@@ -3,9 +3,7 @@ var path = require('path');
 
 var app = express();
 
-var dir = path.join(__dirname, 'public');
-
-app.use(express.static(dir));
+app.use(express.static("public"));
 
 app.get('/jode', function(req, res) {
     res.render('jode.ejs');
@@ -13,6 +11,10 @@ app.get('/jode', function(req, res) {
 
 app.get('/jode/GroupingContent', function(req, res) {
     res.render('GroupingContent.ejs');
+});
+
+app.get('/jode/ItemContent', function (req, res) {
+    res.render('ItemContent.ejs');
 });
 
 

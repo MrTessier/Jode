@@ -1,0 +1,123 @@
+﻿
+<style type="text/css">
+    button.groupingItem {
+        border: solid 2px gray;
+        border-radius: 8px;
+        margin-right: 5px;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        padding: 0;
+    }
+
+        button.groupingItem > div.row:first-child {
+            line-height: 175px;
+        }
+
+        button.groupingItem > div.row:nth-child(2) {
+            line-height: 45px;
+        }
+
+    .centeredContent i {
+        font-size: 3em;
+    }
+
+    .centeredContent {
+        width: 100%;
+        text-align: center;
+    }
+
+    div.dividerForCard {
+        border-right: solid 3px green;
+        height: 150px;
+        margin: 15px 0;
+    }
+
+    div.leftCardContent {
+        padding-right: 0;
+    }
+
+    div.rightCardContent {
+        padding-left: 0;
+    }
+</style>
+
+<script type="text/javascript">
+    function itemClicked(groupClicked) {
+        alert("Show item details");
+    }
+</script>
+
+<div class="row" style="padding-bottom:10px;">
+    <div class="col-6 col-sm-4 col-md-3 col-lg-2 draggable">
+        <button class="btn btn-secondary groupingItem " onclick="itemClicked(-1);">
+            <div class="row">
+                <span class="centeredContent">
+                    <i class="fa fa-plus" aria-hidden="true" style="font-size:5em;"></i>
+                </span>
+            </div>
+            <div class="row">
+                <span class="centeredContent">
+                    New Item
+                </span>
+            </div>
+        </button>
+    </div>
+
+    <div class="col-6 col-sm-4 col-md-3 col-lg-2 draggable">
+        <button class="btn btn-secondary groupingItem" onclick="itemClicked(1);">
+            <div class="row">
+                <div class="col-5 leftCardContent">
+                    <span class="centeredContent">
+                        <i class="fa fa-car" aria-hidden="true"></i>
+                    </span>
+                </div>
+                <div class="col-2">
+                    <div class="centeredContent">
+                        <div class="dividerForCard"></div>
+                    </div>
+                </div>
+                <div class="col-5 rightCardContent">
+                    <div class="centeredContent">
+                        63
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <span class="centeredContent">
+                    Automotive
+                </span>
+            </div>
+        </button>
+    </div>
+
+    <div class="col-6 col-sm-4 col-md-3 col-lg-2 draggable">
+        <button class="btn btn-secondary groupingItem" onclick="itemClicked(1);" >
+            <div class="row">
+                <div class="col-5 leftCardContent">
+                    <span class="centeredContent">
+                        <i class="fa fa-cutlery" aria-hidden="true"></i>
+                    </span>
+                </div>
+                <div class="col-2">
+                    <div class="centeredContent">
+                        <div class="dividerForCard"></div>
+                    </div>
+                </div>
+                <div class="col-5 rightCardContent">
+                    <div class="centeredContent">
+                        12
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <span class="centeredContent">
+                    Food
+                </span>
+            </div>
+        </button>
+    </div>
+
+</div>
+
+<div class="sectionTitle">Items</div>
