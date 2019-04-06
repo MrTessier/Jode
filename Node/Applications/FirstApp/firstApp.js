@@ -17,5 +17,9 @@ app.get('/jode/ItemContent', function (req, res) {
     res.render('ItemContent.ejs');
 });
 
+app.get('/jode/ItemContent/ItemConfigureModal', function (req, res) {
+    res.render('ItemConfigureModal.ejs');
+});
+
 
 app.listen(8080);
