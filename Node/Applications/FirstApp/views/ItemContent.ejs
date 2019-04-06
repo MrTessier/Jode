@@ -101,7 +101,7 @@
     function configItem(itemTitle) {
         $("div#ConfigureItemModal").modal("show");
         $("#ConfigureTitle").text("Configure " + itemTitle);
-        getContent($("div#ConfigureItemModal").find("div.modal-body"), "http://localhost:8080/jode/ItemContent/ItemConfigureModal");
+        getContent($("div#ConfigureItemModal").find("div.modal-body"), "http://localhost:8080/jode/ItemContent/ItemConfigureModal/5");
     }
 
     function ratingMousedOver(currentStar) {
