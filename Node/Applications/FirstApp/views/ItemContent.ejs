@@ -48,7 +48,7 @@
         cursor: pointer;
     }
 
-        button.clearButton:hover {
+        button.clearButton:not(.ratingButton):hover {
             color: teal;
         }
 
@@ -65,43 +65,59 @@
     .ratingHover {
         color: orangered;
     }
-    div.itemContainer {
+    .itemContainer {
         background-color: transparent;
+        margin-bottom:20px;
+        width:100%;
     }
-        div.itemContainer > div.card-header {
+        .itemContainer > div.card-header {
             border: solid 3px transparent;
         }
-        div.itemContainer i.fa-cog {
+        .itemContainer i.fa-cog {
             font-size: 1.3em;
         }
 
-    div.itemContainer:hover > div.card-header {
+    .itemContainer:hover > div.card-header {
         background-color: transparent;
         color: white;
         font-weight: bold;
         border: solid 3px white;
     }
-    div.itemContainer:hover i.fa-cog {
+    .itemContainer:hover i.fa-cog {
         color:white;
     }
 
 </style>
 
 <script type="text/javascript">
+    $(document).ready(function () {
+        getContent_Append($("div#ItemCardRow"), "/jode/ItemContent/ItemCard/Buick Lesabre/4/fas fa-car-side/darkolivegreen");
+        getContent_Append($("div#ItemCardRow"), "/jode/ItemContent/ItemCard/1969 Ford Mustang/5/fas fa-car-side/aqua");
+        getContent_Append($("div#ItemCardRow"), "/jode/ItemContent/ItemCard/Package Truck/2/fas fa-truck-moving/rebeccapurple");
+        getContent_Append($("div#ItemCardRow"), "/jode/ItemContent/ItemCard/Another Item/1/fas fa-address-book/green");
+        getContent_Append($("div#ItemCardRow"), "/jode/ItemContent/ItemCard/People One/1/fas fa-user-shield/red");
+        getContent_Append($("div#ItemCardRow"), "/jode/ItemContent/ItemCard/People Two/5/fas fa-user-shield/blue");
+        getContent_Append($("div#ItemCardRow"), "/jode/ItemContent/ItemCard/People Three/4/fas fa-user-shield/gray");
+    });
+
     function itemClicked(groupClicked) {
-        alert("Show item details");
+        alert("Show modal to cretae a new item.");
     }
 
-    function changeRating(clickedStar, newRating) {
-        let previousStars = clickedStar.prevAll();  // Get all the previous star buttons.
-        clickedStar.find("i").removeClass("far").addClass("fas").attr("data-original", "fas");  // Make this one selected and change the original class to selected.
-        previousStars.find("i").removeClass("far").addClass("fas").attr("data-original", "fas");  // Make all previous selected and change their original classes to selected.
+    function changeRating(clickedStar) {
+        let parentRow = clickedStar.parents("div.card-footer");
+
+        clickedStar.find("i").data("original", "fas");  // Set the original class to selected.
+        clickedStar.prevAll().find("i").data("original", "fas");  // Set all previous original classes to selected.
+        clickedStar.nextAll().find("i").data("original", "far");  // Set all next original classes to not selected.
+
+        updateItemIcons(parentRow);
     }
 
     function configItem(itemTitle) {
         $("div#ConfigureItemModal").modal("show");
         $("#ConfigureTitle").text("Configure " + itemTitle);
-        getContent($("div#ConfigureItemModal").find("div.modal-body"), "http://localhost:8080/jode/ItemContent/ItemConfigureModal/5");
+        getContent($("div#ConfigureItemModal").find("div.modal-body"), "/jode/ItemContent/ItemConfigureModal/5");
     }
 
     function ratingMousedOver(currentStar) {
@@ -111,157 +127,48 @@
     }
 
     function ratingMousedOut(currentStar) {
-        //let icon = currentStar.find("i");  // Find the star icon.
-        //let originalClass = icon.data("original");  // Get the original class which was on the star.
-        //icon.removeClass("fas ratingHover").addClass(originalClass); // Remove the hover class and put the original class back.
-
-        let allStars = $("i.fa-star");
+        let parentRow = currentStar.parents("div.card-footer");
+        let allStars = parentRow.find("i.fa-star");
         for (i = 0; i < allStars.length; i++) {
             let loopStar = $(allStars[i]);
             let originalClass = loopStar.data("original");  // Get the original class which was on the star.
             loopStar.removeClass("fas ratingHover").addClass(originalClass);
         };
+
+        updateItemIcons(parentRow);
+    }
+
+    function updateItemIcons(parentRow) {
+        let allStars = parentRow.find("i.fa-star");
+
+        for (i = 0; i < allStars.length; i++) {
+            let loopStar = $(allStars[i]);
+            let originalClass = loopStar.data("original");  // Get the original class which was on the star.
+            loopStar.removeClass("fas far ratingHover").addClass(originalClass);
+        };
     }
 
 </script>
 
-<div class="row" style="padding-bottom:10px;">
+<div class="row" style="padding-bottom:10px;" id="ItemCardRow">
     <div class="col-6 col-sm-4 col-md-3 col-lg-2 draggable">
-
-        <button class="btn btn-secondary groupingItem " onclick="itemClicked(-1);">
-            <div class="row">
-                <span class="centeredContent">
-                    <i class="fa fa-plus" aria-hidden="true" style="font-size:5em;"></i>
-                </span>
-            </div>
-            <div class="row">
+        <button class="card itemContainer" onclick="itemClicked(-1);">
+            <div class="card-header">
                 <span class="centeredContent">
                     New Item
                 </span>
             </div>
+            <div class="card-body itemBody">
+                <div class="row">
+                    <span class="centeredContent">
+                        <i class="fa fa-plus" aria-hidden="true" style="font-size:5em;"></i>
+                    </span>
+                </div>
+            </div>
         </button>
     </div>
-
-    <div class="col-6 col-sm-4 col-md-3 col-lg-2 draggable">
-        <div class="card itemContainer">
-            <div class="card-header">
-                1969 Ford Mustang
-                <button class="clearButton float-right" type="button" onclick="configItem('1969 Ford Mustang');" title="Configure the 1969 Ford Mustang">
-                    <i class="fas fa-cog" aria-hidden="true"></i>
-                </button>
-            </div>
-            <div class="card-body itemBody">
-                <div class="row ">
-                    <span class="centeredContent">
-                        <i class="fas fa-car-side" aria-hidden="true" style="color:darkolivegreen;"></i>
-                    </span>
-                </div>
-            </div>
-            <div class="card-footer text-muted text-center" style="padding: 5px 0;">
-                <button class="clearButton ratingButton" title="Click to mark the item with a one star rating" type="button"
-                        onclick="changeRating($(this), 1);" onmouseover="ratingMousedOver( $(this) );" onmouseout="ratingMousedOut($(this));" aria-valuenow="1">
-                    <i class="fas fa-star" aria-hidden="true" data-original="fas"></i>
-                </button>
-                <button class="clearButton ratingButton" title="Click to mark the item with a two star rating" type="button"
-                        onclick="changeRating($(this), 2);" onmouseover="ratingMousedOver( $(this) );" onmouseout="ratingMousedOut($(this));" aria-valuenow="2">
-                    <i class="fas fa-star" aria-hidden="true" data-original="fas"></i>
-                </button>
-                <button class="clearButton ratingButton" title="Click to mark the item with a three star rating" type="button"
-                        onclick="changeRating($(this), 3);" onmouseover="ratingMousedOver( $(this) );" onmouseout="ratingMousedOut($(this));" aria-valuenow="0">
-                    <i class="far fa-star" aria-hidden="true" data-original="far"></i>
-                </button>
-                <button class="clearButton ratingButton" title="Click to mark the item with a four star rating" type="button"
-                        onclick="changeRating($(this), 4);" onmouseover="ratingMousedOver( $(this) );" onmouseout="ratingMousedOut($(this));" aria-valuenow="0">
-                    <i class="far fa-star" aria-hidden="true" data-original="far"></i>
-                </button>
-                <button class="clearButton ratingButton" title="Click to mark the item with a five star rating" type="button"
-                        onclick="changeRating($(this), 5);" onmouseover="ratingMousedOver( $(this) );" onmouseout="ratingMousedOut($(this));" aria-valuenow="0">
-                    <i class="far fa-star" aria-hidden="true" data-original="far"></i>
-                </button>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="col-6 col-sm-4 col-md-3 col-lg-2 draggable">
-        <div class="card itemContainer">
-            <div class="card-header">
-                Lawn Mower
-                <button class="clearButton float-right" type="button" onclick="configItem('Lawn Mower');" title="Configure the Lawn Mower">
-                    <i class="fas fa-cog" aria-hidden="true"></i>
-                </button>
-            </div>
-            <div class="card-body itemBody">
-                <div class="row ">
-                    <span class="centeredContent">
-                        <i class="fas fa-truck-pickup" aria-hidden="true" style="color: chocolate;"></i>
-                    </span>
-                </div>
-            </div>
-            <div class="card-footer text-muted text-center" style="padding: 5px 0;">
-                <button class="clearButton ratingButton" title="Click to mark the item with a one star rating" type="button"
-                        onclick="changeRating($(this), 1);" onmouseover="ratingMousedOver( $(this) );" onmouseout="ratingMousedOut($(this));" aria-valuenow="1">
-                    <i class="fas fa-star" aria-hidden="true" data-original="fas"></i>
-                </button>
-                <button class="clearButton ratingButton" title="Click to mark the item with a two star rating" type="button"
-                        onclick="changeRating($(this), 2);" onmouseover="ratingMousedOver( $(this) );" onmouseout="ratingMousedOut($(this));" aria-valuenow="2">
-                    <i class="fas fa-star" aria-hidden="true" data-original="fas"></i>
-                </button>
-                <button class="clearButton ratingButton" title="Click to mark the item with a three star rating" type="button"
-                        onclick="changeRating($(this), 3);" onmouseover="ratingMousedOver( $(this) );" onmouseout="ratingMousedOut($(this));" aria-valuenow="0">
-                    <i class="fas fa-star" aria-hidden="true" data-original="fas"></i>
-                </button>
-                <button class="clearButton ratingButton" title="Click to mark the item with a four star rating" type="button"
-                        onclick="changeRating($(this), 4);" onmouseover="ratingMousedOver( $(this) );" onmouseout="ratingMousedOut($(this));" aria-valuenow="0">
-                    <i class="fas fa-star" aria-hidden="true" data-original="fas"></i>
-                </button>
-                <button class="clearButton ratingButton" title="Click to mark the item with a five star rating" type="button"
-                        onclick="changeRating($(this), 5);" onmouseover="ratingMousedOver( $(this) );" onmouseout="ratingMousedOut($(this));" aria-valuenow="0">
-                    <i class="fas fa-star" aria-hidden="true" data-original="fas"></i>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-6 col-sm-4 col-md-3 col-lg-2 draggable">
-        <div class="card itemContainer">
-            <div class="card-header">
-                Package Truck
-                <button class="clearButton float-right" type="button" onclick="configItem('Package Truck');" title="Configure the Package Truck">
-                    <i class="fas fa-cog" aria-hidden="true"></i>
-                </button>
-            </div>
-            <div class="card-body itemBody">
-                <div class="row ">
-                    <span class="centeredContent">
-                        <i class="fas fa-truck-moving" aria-hidden="true" style="color: rebeccapurple;"></i>
-                    </span>
-                </div>
-            </div>
-            <div class="card-footer text-muted text-center" style="padding: 5px 0;">
-                <button class="clearButton ratingButton" title="Click to mark the item with a one star rating" type="button"
-                        onclick="changeRating($(this), 1);" onmouseover="ratingMousedOver( $(this) );" onmouseout="ratingMousedOut($(this));" aria-valuenow="1">
-                    <i class="fas fa-star" aria-hidden="true" data-original="fas"></i>
-                </button>
-                <button class="clearButton ratingButton" title="Click to mark the item with a two star rating" type="button"
-                        onclick="changeRating($(this), 2);" onmouseover="ratingMousedOver( $(this) );" onmouseout="ratingMousedOut($(this));" aria-valuenow="2">
-                    <i class="fas fa-star" aria-hidden="true" data-original="fas"></i>
-                </button>
-                <button class="clearButton ratingButton" title="Click to mark the item with a three star rating" type="button"
-                        onclick="changeRating($(this), 3);" onmouseover="ratingMousedOver( $(this) );" onmouseout="ratingMousedOut($(this));" aria-valuenow="0">
-                    <i class="fas fa-star" aria-hidden="true" data-original="fas"></i>
-                </button>
-                <button class="clearButton ratingButton" title="Click to mark the item with a four star rating" type="button"
-                        onclick="changeRating($(this), 4);" onmouseover="ratingMousedOver( $(this) );" onmouseout="ratingMousedOut($(this));" aria-valuenow="0">
-                    <i class="fas fa-star" aria-hidden="true" data-original="fas"></i>
-                </button>
-                <button class="clearButton ratingButton" title="Click to mark the item with a five star rating" type="button"
-                        onclick="changeRating($(this), 5);" onmouseover="ratingMousedOver( $(this) );" onmouseout="ratingMousedOut($(this));" aria-valuenow="0">
-                    <i class="far fa-star" aria-hidden="true" data-original="far"></i>
-                </button>
-            </div>
-        </div>
-    </div>
+     
+    <!--The rest of the items will be added on page load...-->
 </div>
 
 <div class="sectionTitle">Items</div>

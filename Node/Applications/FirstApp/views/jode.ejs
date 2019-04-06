@@ -73,7 +73,7 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            getContent($("div#MyGroups"), "http://localhost:8080/jode/GroupingContent");
+            getContent($("div#MyGroups"), "/jode/GroupingContent");
         });
 
         function getContent(displayDiv, contentURL) {
@@ -84,8 +84,19 @@
                 url: contentURL,
                 async: false,
                 success: function (text) {
-                    displayDiv.html(text);
-                    displayDiv.show();
+                    displayDiv.hide().html(text).fadeIn(100);
+                }
+            });
+        };
+
+        function getContent_Append(appendDiv, contentURL) {
+            $.ajax({
+                type: "GET",
+                url: contentURL,
+                async: false,
+                success: function (text) {
+                    appendDiv.hide().append(text).fadeIn(200);
+
                 }
             });
         };
@@ -94,7 +105,7 @@
 <body>
     <div>
         <nav class="navbar navbar-light bg-faded">
-            <a class="navbar-brand" href="http://localhost:8080/jode">
+            <a class="navbar-brand" href="/jode">
                 <img src="/images/J_Logo.png" class="d-inline-block align-top mainLogo" alt="The Jing Logo!">
                 <span class="mainLogoTitle">Jing</span>
             </a>

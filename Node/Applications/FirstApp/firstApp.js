@@ -13,8 +13,16 @@ app.use(express.static("public"))
     .get('/jode/ItemContent', function (req, res) {
         res.render('ItemContent.ejs');
     })
-    .get('/jode/ItemContent/ItemConfigureModal/:myNumber', function (req, res) {
-        res.render('ItemConfigureModal.ejs', {incomingNumber: req.params.myNumber});
+    .get('/jode/ItemContent/ItemConfigureModal/:pNumber', function (req, res) {
+        res.render('ItemConfigureModal.ejs', {incomingNumber: req.params.pNumber});
+    })
+    .get('/jode/ItemContent/ItemCard/:pName/:pRating/:pIconClass/:pColor', function (req, res) {
+        let params = {};
+        params.itemName = req.params.pName;
+        params.itemRating = req.params.pRating;
+        params.iconClass = req.params.pIconClass;
+        params.iconColor = req.params.pColor;
+        res.render('ItemCard.ejs', params);
     })
     .use(function (req, res, next) {
         res.setHeader('Content-Type', 'text/plain');
