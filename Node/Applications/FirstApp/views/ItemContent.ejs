@@ -1,44 +1,7 @@
 ﻿
 <style type="text/css">
-    button.groupingItem {
-        border: solid 2px gray;
-        border-radius: 8px;
-        margin-right: 5px;
-        width: 100%;
-        height: 100%;
-        cursor: pointer;
-        padding: 0;
-    }
-
-        button.groupingItem > div.row:first-child {
-            line-height: 175px;
-        }
-
-        button.groupingItem > div.row:nth-child(2) {
-            line-height: 45px;
-        }
-
     .centeredContent i {
         font-size: 3em;
-    }
-
-    .centeredContent {
-        width: 100%;
-        text-align: center;
-    }
-
-    div.dividerForCard {
-        border-right: solid 3px green;
-        height: 150px;
-        margin: 15px 0;
-    }
-
-    div.leftCardContent {
-        padding-right: 0;
-    }
-
-    div.rightCardContent {
-        padding-left: 0;
     }
 
     /* Style clear buttons which won't really have any display, but act like a button.*/
@@ -59,7 +22,7 @@
     }
 
     button.ratingButton {
-        font-size: 1.5em;
+        font-size: 1.3em;
     }
 
     .ratingHover {
@@ -115,8 +78,9 @@
     }
 
     function configItem(itemTitle) {
-        $("div#ConfigureItemModal").modal("show");
-        $("#ConfigureTitle").text("Configure " + itemTitle);
+        let modalWindow = $("div#ConfigureItemModal");
+        modalWindow.modal("show");
+        modalWindow.find(".modal-title").text("Configure " + itemTitle);
         getContent($("div#ConfigureItemModal").find("div.modal-body"), "/jode/ItemContent/ItemConfigureModal/5");
     }
 
@@ -151,7 +115,7 @@
 </script>
 
 <div class="row" style="padding-bottom:10px;" id="ItemCardRow">
-    <div class="col-6 col-sm-4 col-md-3 col-lg-2 draggable">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 draggable">
         <button class="card itemContainer" onclick="itemClicked(-1);">
             <div class="card-header">
                 <span class="centeredContent">
@@ -177,7 +141,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="ConfigureTitle">Configure</h5>
+                <h5 class="modal-title">Configure Item</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

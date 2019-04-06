@@ -11,14 +11,14 @@
     }
 
         button.groupingItem > div.row:first-child {
-            line-height: 175px;
+            line-height: 125px;
         }
 
         button.groupingItem > div.row:nth-child(2) {
             line-height: 45px;
         }
 
-    .centeredContent i {
+    div.leftCardContent > i {
         font-size: 3em;
     }
 
@@ -27,18 +27,16 @@
         text-align: center;
     }
 
-    div.dividerForCard {
-        border-right: solid 3px green;
-        height: 150px;
-        margin: 15px 0;
-    }
-
     div.leftCardContent {
         padding-right: 0;
+        border-right: solid 1px green;
+        margin-top: 10px;
     }
 
     div.rightCardContent {
         padding-left: 0;
+        border-left: solid 1px green;
+        margin-top: 10px;
     }
 </style>
 
@@ -50,7 +48,7 @@
 </script>
 
 <div class="row">
-    <div class="col-6 col-sm-4 col-md-3 col-lg-2 draggable">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 draggable" style="margin-bottom:20px;">
         <button class="btn btn-secondary groupingItem" onclick="groupingClicked(-1);">
             <div class="row">
                 <span class="centeredContent">
@@ -65,23 +63,14 @@
         </button>
     </div>
 
-    <div class="col-6 col-sm-4 col-md-3 col-lg-2 draggable">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 draggable" style="margin-bottom:20px;">
         <button class="btn btn-secondary groupingItem" onclick="groupingClicked(1);">
             <div class="row">
-                <div class="col-5 leftCardContent">
-                    <span class="centeredContent">
-                        <i class="fas fa-car"></i>
-                    </span>
+                <div class="col leftCardContent">
+                    <i class="fas fa-car"></i>
                 </div>
-                <div class="col-2">
-                    <div class="centeredContent">
-                        <div class="dividerForCard"></div>
-                    </div>
-                </div>
-                <div class="col-5 rightCardContent">
-                    <div class="centeredContent">
-                        63
-                    </div>
+                <div class="col rightCardContent">
+                    63
                 </div>
             </div>
             <div class="row">
@@ -92,23 +81,14 @@
         </button>
     </div>
 
-    <div class="col-6 col-sm-4 col-md-3 col-lg-2 draggable">
-        <button class="btn btn-secondary groupingItem" onclick="groupingClicked(1);">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 draggable" style="margin-bottom:20px;">
+        <button class="btn btn-secondary groupingItem" onclick="groupingClicked(2);">
             <div class="row">
-                <div class="col-5 leftCardContent">
-                    <span class="centeredContent">
-                        <i class="fas fa-utensils"></i>
-                    </span>
+                <div class="col leftCardContent text-center">
+                    <i class="fas fa-utensils"></i>
                 </div>
-                <div class="col-2">
-                    <div class="centeredContent">
-                        <div class="dividerForCard"></div>
-                    </div>
-                </div>
-                <div class="col-5 rightCardContent">
-                    <div class="centeredContent">
-                        12
-                    </div>
+                <div class="col rightCardContent">
+                    12
                 </div>
             </div>
             <div class="row">
@@ -127,7 +107,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="ConfigureTitle">New Grouping</h5>
+                <h5 class="modal-title">New Grouping</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

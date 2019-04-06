@@ -5,10 +5,10 @@
 <script type="text/javascript">
 </script>
 
-<div class="col-6 col-sm-4 col-md-3 col-lg-2 draggable">
+<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 draggable">
     <div class="card itemContainer">
         <div class="card-header">
-            <%= itemName %>, <%= itemRating %>
+            <%= itemName %>
             <button class="clearButton float-right" type="button" onclick="configItem('<%= itemName %>');" title="Configure the <%= itemName %>">
                 <i class="fas fa-cog" aria-hidden="true"></i>
             </button>
@@ -21,7 +21,7 @@
             </div>
         </div>
         <div class="card-footer text-muted text-center" style="padding: 5px 0;">
-            <% for(var i = 1 ; i <= 5 ; i++) { let iconClass; if (i < itemRating ) { iconClass = 'fas'; } else { iconClass = 'far'; }; %>
+            <% for(var i = 1 ; i <= 5 ; i++) { let iconClass; if (i <= itemRating ) { iconClass = 'fas'; } else { iconClass = 'far'; }; %>
             <button class="clearButton ratingButton" title="Click to mark the item with a <%= i %> star rating" type="button"
                     onclick="changeRating($(this));" onmouseover="ratingMousedOver( $(this) );" onmouseout="ratingMousedOut($(this));">
                 <i class="<%= iconClass %> fa-star" aria-hidden="true" data-original="<%= iconClass %>"></i>
