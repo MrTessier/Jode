@@ -1,3 +1,52 @@
 Sources:  http://docs.sequelizejs.com/manual/getting-started.html
 
 1. Open a command prompt
+2. Navigate to your directory where your aplication is (cd C:\Users\mrtes\Node\Applications\FirstApp)
+3. Make sure you still have node installed right: 
+	node -v
+4.  Install sequalize:
+	npm install --save sequelize
+5. Configure for sql server
+	npm install --save tedious
+6. Open up the main program:
+	C:\Users\mrtes\Documents\Repositories\NodeJS\Jode\Node\Applications\FirstApp\firstApp.js
+7. I added the require at the top of the page:
+	const Sequelize = require('sequelize');
+8.  I added the database configuration, swap out the password with the real one, BUT DON'T CHECK THAT IN!
+	const sequelize = new Sequelize('LMS', 'mylocalSeanMcintire', 'PASSWORD, {
+	    host: '66.59.109.170',
+	    dialect: 'mssql'
+	});
+9.  I added a get of a test page which displays some JSON:
+    .get('/jode/Test', function (req, res) {
+        let jsonData;
+        console.log('Creating /jode/Test view.');
+
+        sequelize
+            .query("SELECT * FROM AspNetUsers")
+            .then(myTableRows => {
+                console.log('Query Finished');
+                jsonData = JSON.stringify(myTableRows); // Convert result to JSON string.
+                let params = {};
+                params.jsonUsers = jsonData;
+                res.render('Test.ejs', params);
+            })
+    })
+
+10.  I created the test.ejs page to display the JSON:
+
+<style type="text/css">
+</style>
+
+<script type="text/javascript">
+</script>
+
+<div>
+    Testing out the test page...
+    <br />
+    JSON:  <%= jsonUsers %>
+</div>
+
+And there we have the JSON on the page...
+
+
