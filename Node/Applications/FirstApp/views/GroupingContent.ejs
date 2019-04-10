@@ -38,6 +38,14 @@
         border-left: solid 1px green;
         margin-top: 10px;
     }
+
+    .groupingIcon {
+        font-size:3em;
+    }
+
+    .form-check-label {
+        font-weight: bold;
+    }
 </style>
 
 <script type="text/javascript">
@@ -104,7 +112,7 @@
 <div class="sectionTitle">Groupings</div>
 
 <div class="modal" tabindex="-1" role="dialog" id="NewGroupingModal">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">New Grouping</h5>
@@ -113,7 +121,78 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>Modal body text goes here.</p>
+                <div class="row">
+                    <label class="col-4" for="GroupName">Name</label>
+                    <input class="col-8 form-control" type="text" id="GroupName" placeholder="Group Name" maxlength="128" required>
+                </div>
+
+                <div class="row" style="margin-top:15px;">
+                    <div class="col-3 form-check text-center">
+                        <label class="form-check-label" for="Grouping_Car">
+                            <i class="fas fa-car groupingIcon" aria-hidden="true"></i>
+                            <br />
+                            <input class="form-check-input" type="checkbox" value="" id="Grouping_Car">
+                            Car
+                        </label>
+                    </div>
+                    <div class="col-3 form-check text-center">
+                        <label class="form-check-label" for="Grouping_Pet">
+                            <i class="fas fa-paw groupingIcon" aria-hidden="true"></i>
+                            <br />
+                            <input class="form-check-input" type="checkbox" value="" id="Grouping_Pet">
+                            Pet
+                        </label>
+                    </div>
+                    <div class="col-3 form-check text-center">
+                        <label class="form-check-label" for="Grouping_Chemicals">
+                            <i class="fas fa-oil-can groupingIcon" aria-hidden="true"></i>
+                            <br />
+                            <input class="form-check-input" type="checkbox" value="" id="Grouping_Chemicals">
+                            Chemicals
+                        </label>
+                    </div>
+                    <div class="col-3 form-check text-center">
+                        <label class="form-check-label" for="Grouping_Papergoods">
+                            <i class="fas fa-toilet-paper groupingIcon" aria-hidden="true"></i>
+                            <br />
+                            <input class="form-check-input" type="checkbox" value="" id="Grouping_Papergoods">
+                            Paper Goods
+                        </label>
+                    </div>
+                    <div class="col-3 form-check text-center">
+                        <label class="form-check-label" for="Grouping_Tools">
+                            <i class="fas fa-tools groupingIcon" aria-hidden="true"></i>
+                            <br />
+                            <input class="form-check-input" type="checkbox" value="" id="Grouping_Tools">
+                            Tools
+                        </label>
+                    </div>
+                    <div class="col-3 form-check text-center">
+                        <label class="form-check-label" for="Grouping_People">
+                            <i class="fas fa-user-friends groupingIcon" aria-hidden="true"></i>
+                            <br />
+                            <input class="form-check-input" type="checkbox" value="" id="Grouping_People">
+                            People
+                        </label>
+                    </div>
+                    <div class="col-3 form-check text-center">
+                        <label class="form-check-label" for="Grouping_Fruit">
+                            <i class="fas fa-apple-alt groupingIcon" aria-hidden="true"></i>
+                            <br />
+                            <input class="form-check-input" type="checkbox" value="" id="Grouping_Fruit">
+                            Fruit
+                        </label>
+                    </div>
+                    <div class="col-3 form-check text-center">
+                        <label class="form-check-label" for="Grouping_Wine">
+                            <i class="fas fa-wine-bottle groupingIcon" aria-hidden="true"></i>
+                            <br />
+                            <input class="form-check-input" type="checkbox" value="" id="Grouping_Wine">
+                            Wine
+                        </label>
+                    </div>
+                </div>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
