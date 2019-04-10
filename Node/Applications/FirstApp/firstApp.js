@@ -4,7 +4,7 @@ const Sequelize = require('sequelize');
 
 console.log("Starting jode application");
 var app = express();
-const sequelize = new Sequelize('LMS', 'mylocalSeanMcintire', 'PASSWORD', {
+const sequelize = new Sequelize('LMS', 'mylocalSeanMcintire', '$$DigitalMax@#', {
     host: '66.59.109.170',
     dialect: 'mssql'
 });
