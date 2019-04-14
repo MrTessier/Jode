@@ -53,6 +53,8 @@
 </style>
 
 <script type="text/javascript">
+    var draggableApplied = false;
+
     $(document).ready(function () {
         getContent_Append($("div#ItemCardRow"), "/jode/ItemContent/ItemCard/Buick Lesabre/4/fas fa-car-side/darkolivegreen");
         getContent_Append($("div#ItemCardRow"), "/jode/ItemContent/ItemCard/1969 Ford Mustang/5/fas fa-car-side/aqua");
@@ -63,10 +65,6 @@
         getContent_Append($("div#ItemCardRow"), "/jode/ItemContent/ItemCard/People Three/4/fas fa-user-shield/gray");
     });
 
-    function itemClicked(groupClicked) {
-        alert("Show modal to cretae a new item.");
-    }
-
     function changeRating(clickedStar) {
         let parentRow = clickedStar.parents("div.card-footer");
 
@@ -75,6 +73,14 @@
         clickedStar.nextAll().find("i").data("original", "far");  // Set all next original classes to not selected.
 
         updateItemIcons(parentRow);
+    }
+
+    function checkDraggableEnabled() {
+        if (!draggableApplied) {
+            $("div.draggable").draggable();
+            $("div.sortable").sortable({ revert: true });
+            draggableApplied = true;
+        };
     }
 
     function configItem(itemTitle) {
@@ -114,7 +120,7 @@
 
 </script>
 
-<div class="row" style="padding-bottom:10px;" id="ItemCardRow">
+<div class="row sortable" style="padding-bottom:10px;" id="ItemCardRow" onmouseover="checkDraggableEnabled();">
     <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 draggable">
         <button class="card itemContainer" onclick="itemClicked(-1);">
             <div class="card-header">
