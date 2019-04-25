@@ -25,6 +25,9 @@ function initialize() {
             .get('/jode/ItemContent', function (req, res) {
                 res.render('ItemContent.ejs');
             })
+            .get('/jode/LoanedOutContent', function (req, res) {
+                res.render('LoanedOutContent.ejs');
+            })
             .get('/jode/ItemContent/ItemConfigureModal/:pNumber', function (req, res) {
                 res.render('ItemConfigureModal.ejs', { incomingNumber: req.params.pNumber });
             })
@@ -62,7 +65,7 @@ function initialize() {
 
         httpServer.listen(8080)
             .on('listening', () => {
-                console.log("Web server is listening on localhost:8080");
+                console.log("Web server is listening on localhost:8080, URL: http://localhost:8080/jode");
             })
             .on("error", err => {
                 reject(err);

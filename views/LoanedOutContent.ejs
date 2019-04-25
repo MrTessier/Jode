@@ -1,0 +1,67 @@
+﻿
+<style type="text/css">
+    button.groupingItem {
+        border: solid 2px gray;
+        border-radius: 8px;
+        margin-right: 5px;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        padding: 0;
+    }
+
+        button.groupingItem > div.row:first-child {
+            line-height: 125px;
+        }
+
+        button.groupingItem > div.row:nth-child(2) {
+            line-height: 45px;
+        }
+
+    div.leftCardContent > i {
+        font-size: 3em;
+    }
+
+    .centeredContent {
+        width: 100%;
+        text-align: center;
+    }
+
+    div.leftCardContent {
+        padding-right: 0;
+        border-right: solid 1px green;
+        margin-top: 10px;
+    }
+
+    div.rightCardContent {
+        padding-left: 0;
+        border-left: solid 1px green;
+        margin-top: 10px;
+    }
+
+    div#NewGroupingModal .groupingIcon {
+        font-size: 3em;
+    }
+
+    div#NewGroupingModal .form-check-label {
+        font-weight: bold;
+        padding-left: 0;
+        border: solid 2px transparent;
+        width: 100%;
+        border-radius: 60px;
+    }
+
+    div#NewGroupingModal .selected {
+        border-color: green;
+    }
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        getContent_Append($("div#LoanedOutRow"), "/jode/ItemContent/ItemCard/Pontiac Firebird/4/fas fa-car-side/Yellow");
+    });
+</script>
+
+<div class="row" id="LoanedOutRow"></div>
+
+<div class="sectionTitle">Loaned Out Items</div>
